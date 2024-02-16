@@ -9,7 +9,7 @@ const ViewAppointments = () => {
     <Base>
       <Container className="">
         <ViewAllAppointments />
-        <PaginationComponents />
+        {/* <PaginationComponents /> */}
       </Container>
     </Base>
   );

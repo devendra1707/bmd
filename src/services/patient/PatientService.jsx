@@ -9,22 +9,22 @@ export const getAllDoctors = () => {
 
 // Get All Appointments
 
-// export const getAllAppointments = (pageNumber, pageSize) => {
-//   return privateAxios
-//     .get(
-//       `appointment/my-appointments??pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=id&sortDir=asc`
-//     )
-//     .then((response) => {
-//       return response.data;
-//     });
-// };
-// // Get All Appointments
-
-export const getAllAppointments = () => {
-  return privateAxios.get(`appointment/my-appointments`).then((response) => {
-    return response.data;
-  });
+export const getAllAppointments = (pageNumber, pageSize) => {
+  return privateAxios
+    .get(
+      `appointment/my-appointments?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=id&sortDir=asc`
+    )
+    .then((response) => {
+      return response.data;
+    });
 };
+// Get All Appointments
+
+// export const getAllAppointments = () => {
+//   return privateAxios.get(`appointment/my-appointments`).then((response) => {
+//     return response.data;
+//   });
+// };
 
 // Get Current Patient
 
