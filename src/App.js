@@ -19,6 +19,7 @@ import DoctorDetailsComponents from "./components/DoctorDetailsComponents";
 import BookAppointment from "./components/BookAppointment";
 import AppointmentDetail from "./pages/patient-routes/AppointmentDetail";
 import DoctorDetail from "./pages/doctor-routes/DoctorDetail";
+import DoctorDetails from "./components/DoctorDetails";
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function App() {
           <Route path="profile" element={<DoctorProfile />} />
           <Route path="details" element={<DoctorDetail />} />
         </Route>
+
+        <Route path="/doctors" element={<DoctorDetails />} />
       </Routes>
     </BrowserRouter>
   );

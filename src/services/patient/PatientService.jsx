@@ -1,4 +1,4 @@
-import { privateAxios } from "../helper";
+import { myAxios, privateAxios } from "../helper";
 
 // Get All Doctors
 export const getAllDoctors = () => {
@@ -40,4 +40,16 @@ export const getDoctorById = (doctorId) => {
   return privateAxios.get(`doctor/` + doctorId).then((response) => {
     return response.data;
   });
+};
+
+// Get All Doctor With Pagination
+
+export const getAllDoctor = (pageNumber, pageSize) => {
+  return myAxios
+    .get(
+      `patient/doctors/all?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=id&sortDir=asc`
+    )
+    .then((response) => {
+      return response.data;
+    });
 };

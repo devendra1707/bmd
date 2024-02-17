@@ -50,14 +50,15 @@ const CustomNavbar = () => {
                 Home
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink tag={ReactLink} to="/">
-                About
-              </NavLink>
-            </NavItem>
+
             <NavItem>
               <NavLink tag={ReactLink} to="/services">
                 Services
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={ReactLink} to="/doctors">
+                All Doctors
               </NavLink>
             </NavItem>
             {user &&

@@ -6,7 +6,6 @@ import { myAxios, privateAxios } from "../helper";
 //   });
 // };
 
-
 // Appointment By Using User Id
 export const appoUserId = () => {
   return myAxios.get(`appointment/user/15/appointments`).then((response) => {
@@ -47,7 +46,17 @@ export const getAppointment = () => {
 // GetAppointment By Appointment Id
 
 export const getAppointmentById = (appointmentId) => {
-  return privateAxios.get(`appointment/`+appointmentId).then((response) => {
+  return privateAxios.get(`appointment/` + appointmentId).then((response) => {
     return response.data;
   });
+};
+
+// Get Appointment By Patient Name  ${patientName}
+
+export const getAppointmentByPatientName = (patientName) => {
+  return privateAxios
+    .get(`appointment/name/${patientName}`)
+    .then((response) => {
+      return response.data;
+    });
 };
