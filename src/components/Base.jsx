@@ -3,10 +3,10 @@ import Footer from "./Footer";
 
 const Base = ({ children }) => {
   return (
-    <div className="container-fluid p-0 m=0" style={{ overflowX: "hidden" }}>
+    <div className="container-fluid p-0 mt-5" style={{ overflowX: "hidden" }}>
       <CustomNavbar />
       {children}
-      <Footer/>
+      <Footer />
     </div>
   );
 };

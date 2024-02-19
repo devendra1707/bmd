@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 import { doLogout, getCurrentUserDetail, isLoggedIn } from "../auth";
 import { useNavigate } from "react-router-dom";
+import { Box, CssBaseline } from "@mui/material";
 
 const CustomNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +39,9 @@ const CustomNavbar = () => {
 
   return (
     <div>
-      <Navbar color="dark" dark expand="md" fixed="" className="px-5">
+      <CssBaseline />
+
+      <Navbar color="dark" dark expand="md" className="px-5 " fixed="top">
         <NavbarBrand tag={ReactLink} to="/">
           BMD
         </NavbarBrand>
@@ -89,7 +92,7 @@ const CustomNavbar = () => {
                 </DropdownToggle>
                 <DropdownMenu end>
                   <DropdownItem tag={ReactLink} to="/patient/doctors">
-                    All Patient
+                    All Doctors
                   </DropdownItem>
                   <DropdownItem tag={ReactLink} to="/doctor/dashboard">
                     Doctor Dashboard
@@ -122,7 +125,7 @@ const CustomNavbar = () => {
           <Nav navbar>
             {login && (
               <>
-                <NavItem>
+                {/* <NavItem>
                   {user &&
                   user.userWithoutDoctorDto.roles[0].userRole == "PATIENT" ? (
                     <NavLink tag={ReactLink} to="/patient/profile">
@@ -133,6 +136,19 @@ const CustomNavbar = () => {
                       Profile Info
                     </NavLink>
                   )}
+                </NavItem> */}
+
+                <NavItem>
+                  <NavLink
+                    tag={ReactLink}
+                    to={
+                      user.userWithoutDoctorDto.roles[0].userRole === "PATIENT"
+                        ? "/patient/profile"
+                        : "/doctor/profile"
+                    }
+                  >
+                    Profile Info
+                  </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink>

@@ -6,7 +6,7 @@ import PatientProfileInfo from "../../components/PatientProfileInfo";
 const PatientProfile = () => {
   return (
     <Base>
-      <Container className="text-center">
+      <Container className="text-center mt-3">
         <PatientProfileInfo />
       </Container>
     </Base>

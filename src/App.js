@@ -20,6 +20,8 @@ import BookAppointment from "./components/BookAppointment";
 import AppointmentDetail from "./pages/patient-routes/AppointmentDetail";
 import DoctorDetail from "./pages/doctor-routes/DoctorDetail";
 import DoctorDetails from "./components/DoctorDetails";
+import UpdateDetails from "./pages/patient-routes/UpdateDetails";
+import UpdateDoctorDetails from "./pages/doctor-routes/UpdateDoctorDetails";
 
 function App() {
   return (
@@ -46,11 +48,13 @@ function App() {
             path="appointmentdetail/:appointmentId"
             element={<AppointmentDetail />}
           />
+          <Route path="update-patient" element={<UpdateDetails />} />
         </Route>
         <Route path="/doctor" element={<DoctorRoute />}>
           <Route path="dashboard" element={<DoctorDashboard />} />
           <Route path="profile" element={<DoctorProfile />} />
           <Route path="details" element={<DoctorDetail />} />
+          <Route path="update" element={<UpdateDoctorDetails />} />
         </Route>
 
         <Route path="/doctors" element={<DoctorDetails />} />

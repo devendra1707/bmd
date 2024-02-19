@@ -28,6 +28,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import styles from "../components/ViewDoctor.module.css";
+import { getDoctorBySpelist } from "../services/doctor/DoctorService";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -90,6 +91,26 @@ const DoctorDetails = () => {
   });
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      setSearchResult([]);
+      // changePage(currentPage);
+      return;
+    }
+
+    getDoctorBySpelist(searchTerm)
+      .then((doc) => {
+        setSearchResult(doc);
+        console.log(JSON.stringify(doc));
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Doctor not found with this Specialist Name...");
+      });
+  }, [searchTerm]);
 
   const changePage = (pageNumber = 0, pageSize = 8) => {
     if (pageNumber > doctorContent.pageNumber && doctorContent.lastPage) {
@@ -148,54 +169,57 @@ const DoctorDetails = () => {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
-                // onChange={(event) => setSearchTerm(event.target.value)}
+                onChange={(event) => setSearchTerm(event.target.value)}
               />
             </Search>
           </Toolbar>
         </Container>
+        {/* {JSON.stringify(doctorContent)} */}
+        <Grid container spacing={4}>
+          {/* {doctorContent.content.map((doctor) => ( */}
+          {/* {(searchResult.length > 0 ? searchResult : doctorContent.content).map(
+            (doctor) => ( */}
+          {(searchResult.length > 0 ? searchResult : doctorContent.content).map(
+            (doctor) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={doctor.id}>
+                <Card sx={{ maxWidth: 345, height: 350 }} color="dark">
+                  <CardMedia
+                    sx={{ height: 150, width: 140 }}
+                    className={styles.img}
+                    image="https://tse3.mm.bing.net/th?id=OIP.4dcJ_AHTJ81dikKbJ_xBtgHaGw&pid=Api&P=0&h=180"
+                    title="green iguana"
+                  />
 
-        <Grid
-         container spacing={4}
-        >
-          {doctorContent.content.map((doctor) => (
-            <Grid  item xs={12} sm={6} md={4} lg={3} key={doctor.id}>
-              <Card sx={{ maxWidth: 345 }} color="dark">
-                <CardMedia
-                  sx={{ height: 150, width: 140 }}
-                  className={styles.img}
-                  image="https://tse3.mm.bing.net/th?id=OIP.4dcJ_AHTJ81dikKbJ_xBtgHaGw&pid=Api&P=0&h=180"
-                  title="green iguana"
-                />
+                  <CardContent>
+                    <Typography gutterBottom variant="body2" component="div">
+                      <strong>Name : </strong> {doctor.drName}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>E - Mail : </strong> {doctor.drEmail}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Number : </strong> {doctor.drMob}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Specilist : </strong> {doctor.specilist}
+                    </Typography>
+                  </CardContent>
 
-                <CardContent>
-                  <Typography gutterBottom variant="body2" component="div">
-                    <strong>Name : </strong> {doctor.userName}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>E - Mail : </strong> {doctor.userEmail}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Number : </strong> {doctor.userMobileNumber}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    // onClick={() => bookAppointments(doctor.id)}
-                    size="small"
-                  >
-                    Book Appointments
-                  </Button>
-                  <Button
-                    // onClick={() => doctorDetails(doctor.id)}
-                    size="small"
-                  >
-                    Doctor Details
-                  </Button>
-                  {/* <Link to="doctordetails"> Doctor Details</Link> */}
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+                  <CardActions>
+                    <Container className="text-center">
+                      <Button
+                        // onClick={() => doctorDetails(doctor.id)}
+                        size="small"
+                      >
+                        Doctor Details
+                      </Button>
+                      {/* <Link to="doctordetails"> Doctor Details</Link> */}
+                    </Container>
+                  </CardActions>
+                </Card>
+              </Grid>
+            )
+          )}
         </Grid>
         <Container className="mt-3">
           <Pagination aria-label="Page navigation example" size="lg">

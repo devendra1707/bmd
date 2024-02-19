@@ -53,3 +53,11 @@ export const getAllDoctor = (pageNumber, pageSize) => {
       return response.data;
     });
 };
+
+// Update Details
+
+export const updatePatientDetails = (user) => {
+  return privateAxios.put(`patient/update`, user).then((response) => {
+    return response.data;
+  });
+};

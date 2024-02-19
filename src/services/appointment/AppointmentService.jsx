@@ -28,7 +28,7 @@ export const appoUserId = () => {
 // };
 
 export const bookAppointment = (doctorId, appointmentData) => {
-  console.log(appointmentData);
+  // console.log(appointmentData);
   return privateAxios
     .post(`appointment/book-appointment?doctorId=${doctorId}`, appointmentData)
     .then((response) => {

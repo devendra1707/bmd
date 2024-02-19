@@ -31,6 +31,11 @@ const DoctorProfile = () => {
   const goDoctorDetails = () => {
     navigate("/doctor/details");
   };
+  const updateDoctorDetails = () => {
+    navigate("/doctor/update");
+  };
+
+
   return (
     <Base>
       <Container>
@@ -80,6 +85,13 @@ const DoctorProfile = () => {
                     color="primary"
                   >
                     dashboard
+                  </Button>
+                  <Button
+                    onClick={() => updateDoctorDetails()}
+                    size="small"
+                    color="primary"
+                  >
+                    update Profile
                   </Button>
                   <Button
                     onClick={() => goDoctorDetails()}

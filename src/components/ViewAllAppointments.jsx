@@ -67,6 +67,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+// const PaginationItem = styled.li`
+//   margin-top: 1.5rem;
+//   font-size: 0.9rem;
+//   color: ${({ theme }) => theme.soft2};
+//   text-align: center;
+//   color: white;
+//   // background-color: black;
+//   background-color: rgba(0, 0, 0, 0.87);
+// `;
+
 const ViewAllAppointments = () => {
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState({
@@ -191,13 +201,14 @@ const ViewAllAppointments = () => {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    {appointment.patientName}
+                    <strong>Name : </strong> {appointment.patientName}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Email: {appointment.patientEmail}
+                    <strong> Email : </strong> {appointment.patientEmail}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Mobile Number: {appointment.patientMobileNumber}
+                    <strong>Mobile Number :</strong>
+                    {appointment.patientMobileNumber}
                   </Typography>
                 </CardContent>
                 <CardActions>
@@ -260,7 +271,7 @@ const ViewAllAppointments = () => {
         )
       </Grid> */}
       <Container className="mt-3">
-        <Pagination aria-label="Page navigation example" size="lg">
+        <Pagination aria-label="Page navigation exampl bgColorPage" size="lg">
           <PaginationItem
             onClick={() => changePage(appointments.pageNumber - 1)}
             disabled={appointments.pageNumber === 0}

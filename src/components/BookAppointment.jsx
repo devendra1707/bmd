@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardBody,
- 
-  Container,
-  FormGroup,
-  Row,
-  Form,
-} from "reactstrap";
+import { Card, CardBody, Container, FormGroup, Row, Form } from "reactstrap";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -27,6 +19,7 @@ import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Base from "./Base";
+import { MenuItem } from "@mui/material";
 
 const BookAppointment = () => {
   const navigate = useNavigate();
@@ -42,6 +35,15 @@ const BookAppointment = () => {
     patientName: "",
     patientAge: "",
   });
+  const [emailError, setEmailError] = useState(false);
+  const [patientDobError, setPatientDobError] = useState(false);
+  const [patientAddressError, setPatientAddressError] = useState(false);
+  const [patientGenderError, setPatientGenderError] = useState(false);
+  const [patientGovIdNumError, setPatientGovIdNumError] = useState(false);
+  const [patientNameError, setPatientNameError] = useState(false);
+  const [patientAgeError, setPatientAgeError] = useState(false);
+  const [patientMobileNumberError, setPatientMobileNumberError] =
+    useState(false);
 
   // const [user, setUser] = useState(undefined);
   // field change function
@@ -119,11 +121,43 @@ const BookAppointment = () => {
     // console.log("Form Submitted ...");
     // console.log(appointment);
 
-    if (appointment.patientMobileNumber.trim() === "") {
-      alert("Mobile Number is required !!!");
+    if (appointment.patientName.trim() === "") {
+      setPatientNameError(true);
       return;
     }
 
+    if (appointment.patientAge.trim() === "") {
+      setPatientAgeError(true);
+      return;
+    }
+
+    if (appointment.patientMobileNumber.trim() === "") {
+      setPatientMobileNumberError(true);
+      return;
+    }
+
+    if (
+      !validateEmail(appointment.patientEmail) &&
+      appointment.patientEmail.trim() === ""
+    ) {
+      setEmailError(true);
+      return;
+    }
+
+    if (appointment.patientAddress.trim() === "") {
+      setPatientAddressError(true);
+      return;
+    }
+
+    if (appointment.patientGovIdNum.trim() === "") {
+      setPatientGovIdNumError(true);
+    }
+    if (appointment.patientGender.trim() === "") {
+      setPatientGenderError(true);
+    }
+    if (appointment.patientDob.trim() === "") {
+      setPatientDobError(true);
+    }
     // Submit the form to server
     // appointment["userId"] = user.id;
     // doBookAppointment(appointment)
@@ -158,6 +192,11 @@ const BookAppointment = () => {
       });
   };
 
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
   const gender = [
     {
       value: "Male",
@@ -171,71 +210,103 @@ const BookAppointment = () => {
   return (
     <Base>
       <Container>
-      <Card className="mt-3">
-      <CardBody>
-        {/* {JSON.stringify(appointment)} */}
-        <Container className="text-center">
-          <h3>Book An Appointment </h3>
-        </Container>
+        <Card className="mt-3">
+          <CardBody>
+            {/* {JSON.stringify(appointment)} */}
+            <Container className="text-center">
+              <h3>Book An Appointment </h3>
+            </Container>
 
-        <Form onSubmit={bookAppointment}>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "48%" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="filled-basic"
-              label="Patient Name"
-              variant="filled"
-              onChange={(e) => fieldChange(e, "patientName")}
-            />
-            <TextField
-              onChange={(e) => fieldChange(e, "patientAge")}
-              id="filled-basic"
-              label="Patient Age"
-              variant="filled"
-            />
-            <TextField
-              onChange={(e) => fieldChange(e, "patientMobileNumber")}
-              id="filled-basic"
-              label="Patient Mobile"
-              variant="filled"
-            />
-            <TextField
-              onChange={(e) => fieldChange(e, "patientAddress")}
-              id="filled-basic"
-              label="Patient Address"
-              variant="filled"
-            />
-            <TextField
-              onChange={(e) => fieldChange(e, "patientEmail")}
-              id="filled-basic"
-              label="Patient Email"
-              variant="filled"
-            />
-            <TextField
-              onChange={(e) => fieldChange(e, "patientGovIdNum")}
-              id="filled-basic"
-              label="Patient Gov Id"
-              variant="filled"
-            />
-            <TextField
-              onChange={(e) => fieldChange(e, "patientGender")}
-              id="filled-basic"
-              label="Patient Gender"
-              variant="filled"
-            />
-            <TextField
-              onChange={(e) => fieldChange(e, "patientDob")}
-              id="filled-basic"
-              label="Patient DOB"
-              variant="filled"
-            />
-            {/* <TextField
+            <Form onSubmit={bookAppointment}>
+              <Box
+                component="form"
+                sx={{
+                  "& > :not(style)": { m: 1, width: "48%" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  id="filled-basic"
+                  label="Patient Name"
+                  variant="filled"
+                  onChange={(e) => fieldChange(e, "patientName")}
+                  error={patientNameError}
+                  helperText={patientNameError ? "Please enter Name" : ""}
+                />
+                <TextField
+                  onChange={(e) => fieldChange(e, "patientAge")}
+                  id="filled-basic"
+                  label="Patient Age"
+                  variant="filled"
+                  type="number"
+                  error={patientAgeError}
+                  helperText={patientAgeError ? "Please enter Age" : ""}
+                />
+                <TextField
+                  onChange={(e) => fieldChange(e, "patientMobileNumber")}
+                  id="filled-basic"
+                  label="Patient Mobile"
+                  variant="filled"
+                  type="number"
+                  error={patientMobileNumberError}
+                  helperText={
+                    patientMobileNumberError ? "Please enter Mobile Number" : ""
+                  }
+                />
+                <TextField
+                  onChange={(e) => fieldChange(e, "patientAddress")}
+                  id="filled-basic"
+                  label="Patient Address"
+                  variant="filled"
+                  error={patientAddressError}
+                  helperText={patientAddressError ? "Please enter Address" : ""}
+                />
+                <TextField
+                  onChange={(e) => fieldChange(e, "patientEmail")}
+                  id="filled-basic"
+                  label="Patient Email"
+                  variant="filled"
+                  type="email"
+                  error={emailError}
+                  helperText={
+                    emailError ? "Please enter a valid email address" : ""
+                  }
+                />
+                <TextField
+                  onChange={(e) => fieldChange(e, "patientGovIdNum")}
+                  id="filled-basic"
+                  label="Patient Gov Id"
+                  variant="filled"
+                  type="number"
+                  error={patientGovIdNumError}
+                  helperText={patientGovIdNumError ? "Please enter Gov Id" : ""}
+                />
+                {/* <TextField
+                  onChange={(e) => fieldChange(e, "patientGender")}
+                  id="filled-basic"
+                  label="Patient Gender"
+                  variant="filled"
+                /> */}
+                <TextField
+                  onChange={(e) => fieldChange(e, "patientGender")}
+                  id="filled-basic"
+                  label="Patient Gender"
+                  variant="filled"
+                  select
+                >
+                  <MenuItem value="Male">Male</MenuItem>
+                  <MenuItem value="Female">Female</MenuItem>
+                  <MenuItem value="Female">Other</MenuItem>
+                </TextField>
+                <TextField
+                  onChange={(e) => fieldChange(e, "patientDob")}
+                  id="filled-basic"
+                  // label="Patient DOB"
+                  variant="filled"
+                  type="date"
+                />
+                {/* <TextField
               id="outlined-select-currency-native"
               select
             //   label="Gender"
@@ -251,34 +322,33 @@ const BookAppointment = () => {
             </option>
           ))}
             </TextField> */}
-          </Box>
-          <Container className="text-center">
-            <Button
-              //   onClick={submitForm}
-              variant="contained"
-              color="primary"
-              outline
-              type="submit"
-            >
-              Book Appointment
-            </Button>
-            <Button
-              onClick={resetAppointment}
-              outline
-              variant="contained"
-              color="secondary"
-              className="ms-2"
-              type="button"
-            >
-              Reset
-            </Button>
-          </Container>
-        </Form>
-      </CardBody>
-    </Card>
+              </Box>
+              <Container className="text-center">
+                <Button
+                  //   onClick={submitForm}
+                  variant="contained"
+                  color="primary"
+                  outline
+                  type="submit"
+                >
+                  Book Appointment
+                </Button>
+                <Button
+                  onClick={resetAppointment}
+                  outline
+                  variant="contained"
+                  color="secondary"
+                  className="ms-2"
+                  type="button"
+                >
+                  Reset
+                </Button>
+              </Container>
+            </Form>
+          </CardBody>
+        </Card>
       </Container>
     </Base>
-   
   );
 };
 

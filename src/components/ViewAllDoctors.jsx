@@ -78,8 +78,8 @@ const ViewAllDoctors = ({ id }) => {
       >
         {doctorContent &&
           doctorContent.map((doctor) => (
-            <Grid item xs={3} key={doctor.id}>
-              <Card sx={{ maxWidth: 345 }} color="dark">
+            <Grid item xs={12} sm={6} md={4} lg={3} key={doctor.id}>
+              <Card sx={{ maxWidth: 345, height: 350 }} color="dark">
                 <CardMedia
                   sx={{ height: 150, width: 140 }}
                   className={styles.img}

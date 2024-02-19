@@ -27,6 +27,10 @@ const PatientProfileInfo = () => {
   const goDashboard = () => {
     navigate("/patient/dashboard");
   };
+
+  const updateDetails = () => {
+    navigate("/patient/update-patient");
+  };
   return (
     <Row className="mt-3">
       {/* {JSON.stringify(currentPatient)} */}
@@ -74,6 +78,14 @@ const PatientProfileInfo = () => {
                 color="primary"
               >
                 dashboard
+              </Button>
+
+              <Button
+                onClick={() => updateDetails()}
+                size="small"
+                color="primary"
+              >
+                Update Details
               </Button>
             </Container>
           </Card>
