@@ -65,7 +65,7 @@ const Login = () => {
         <Row className="mt-5">
           <Col sm={{ size: 6, offset: 3 }}>
             <Card color="dark" outline>
-              <CardHeader>
+              <CardHeader className="text-center">
                 <h3>Login Here !!!</h3>
               </CardHeader>
               <CardBody>

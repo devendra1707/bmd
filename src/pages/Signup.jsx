@@ -142,28 +142,28 @@ const Signup = () => {
                         label="Mobile Number"
                         variant="outlined"
                       />
+                      <Box display="flex" justifyContent="center" mb={2}>
+                        <RadioGroup
+                          row
+                          aria-labelledby="demo-row-radio-buttons-group-label"
+                          name="row-radio-buttons-group"
+                          className="px-2"
+                        >
+                          <FormControlLabel
+                            onChange={(e) => handleChange(e, "id")}
+                            value="501"
+                            control={<Radio />}
+                            label="Doctor"
+                          />
 
-                      <RadioGroup
-                        row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
-                        className="px-2"
-                      >
-                        <FormControlLabel
-                          onChange={(e) => handleChange(e, "id")}
-                          value="501"
-                          control={<Radio />}
-                          label="Doctor"
-                        />
-
-                        <FormControlLabel
-                          onChange={(e) => handleChange(e, "id")}
-                          value="502"
-                          control={<Radio />}
-                          label="Patient"
-                        />
-                      </RadioGroup>
-
+                          <FormControlLabel
+                            onChange={(e) => handleChange(e, "id")}
+                            value="502"
+                            control={<Radio />}
+                            label="Patient"
+                          />
+                        </RadioGroup>
+                      </Box>
                       <Container className="text-center">
                         <Button
                           onClick={submitForm}
