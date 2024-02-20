@@ -335,5 +335,6 @@ const InputElement = styled("input")(
   &:focus-visible {
     outline: 0;
   }
-`
+`,
+  { type: "tel" }
 );

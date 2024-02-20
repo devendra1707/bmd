@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Typography } from "@mui/material"; // Import components from MUI
 import { Container, Navbar } from "reactstrap"; // Import Container from Reactstrap
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 const Copyright = styled.p`
   margin-top: 1.5rem;
@@ -14,6 +15,18 @@ const Copyright = styled.p`
 `;
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const home = () => {
+    navigate("/");
+  };
+  const about = () => {
+    navigate("/aboutus");
+  };
+  const contact = () => {
+    navigate("/contactus");
+  };
+
   return (
     <footer style={{ backgroundColor: "#f8f9fa", padding: "20px 0px 0px 0px" }}>
       <Container>
@@ -28,9 +41,9 @@ const Footer = () => {
             <Typography variant="h6">Links</Typography>
             <Typography variant="body2">
               <ul style={{ listStyleType: "none", padding: 0 }}>
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li onClick={home}>Home</li>
+                <li onClick={about}>About</li>
+                <li onClick={contact}>Contact</li>
               </ul>
             </Typography>
           </Grid>
@@ -49,7 +62,7 @@ const Footer = () => {
         </Grid>
       </Container>
       <Copyright className="m-0 py-2 mb-0 ">
-        &copy; {new Date().getFullYear()} Devendra Patel. All rights reserved.
+        &copy; {new Date().getFullYear()} Book My Doctor All rights reserved.
       </Copyright>
     </footer>
   );

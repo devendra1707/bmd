@@ -22,6 +22,8 @@ import DoctorDetail from "./pages/doctor-routes/DoctorDetail";
 import DoctorDetails from "./components/DoctorDetails";
 import UpdateDetails from "./pages/patient-routes/UpdateDetails";
 import UpdateDoctorDetails from "./pages/doctor-routes/UpdateDoctorDetails";
+import Contact from "./components/Contact";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="otp" element={<Otp />} />
         <Route path="signup" element={<Signup />} />
         <Route path="services" element={<Services />} />
+        <Route path="contactus" element={<Contact />} />
+        <Route path="aboutus" element={<AboutUs />} />
 
         <Route path="/patient" element={<PatientRoute />}>
           <Route path="dashboard" element={<PatientDashboard />} />

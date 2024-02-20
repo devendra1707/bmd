@@ -102,6 +102,16 @@ const CustomNavbar = () => {
                 </DropdownMenu>
               </UncontrolledDropdown>
             )}
+            <NavItem>
+              <NavLink tag={ReactLink} to="/contactus">
+                Contact Us
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={ReactLink} to="/aboutus">
+                About Us
+              </NavLink>
+            </NavItem>
             {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Services
