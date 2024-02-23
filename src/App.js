@@ -24,46 +24,67 @@ import UpdateDetails from "./pages/patient-routes/UpdateDetails";
 import UpdateDoctorDetails from "./pages/doctor-routes/UpdateDoctorDetails";
 import Contact from "./components/Contact";
 import AboutUs from "./components/AboutUs";
+import { createContext, useState } from "react";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
+
+export const ThemeContext = createContext(null);
 function App() {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
+
   return (
-    <BrowserRouter basename="/bmd">
-      <ToastContainer position="bottom-center" />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="otp" element={<Otp />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="services" element={<Services />} />
-        <Route path="contactus" element={<Contact />} />
-        <Route path="aboutus" element={<AboutUs />} />
+    <ThemeProvider theme={darkTheme}>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <BrowserRouter basename="/bmd">
+          <ToastContainer position="bottom-center" />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="login" element={<Login />} />
+            <Route path="otp" element={<Otp />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="services" element={<Services />} />
+            <Route path="contactus" element={<Contact />} />
+            <Route path="aboutus" element={<AboutUs />} />
 
-        <Route path="/patient" element={<PatientRoute />}>
-          <Route path="dashboard" element={<PatientDashboard />} />
-          <Route path="bookappointment" element={<BookAppointment />} />
-          <Route path="profile" element={<PatientProfile />} />
-          <Route path="doctors" element={<ViewDoctors />} />
-          <Route path="appointments" element={<ViewAppointments />} />
-          <Route
-            path="doctordetails/:doctorId"
-            element={<DoctorDetailsComponents />}
-          />
-          <Route
-            path="appointmentdetail/:appointmentId"
-            element={<AppointmentDetail />}
-          />
-          <Route path="update-patient" element={<UpdateDetails />} />
-        </Route>
-        <Route path="/doctor" element={<DoctorRoute />}>
-          <Route path="dashboard" element={<DoctorDashboard />} />
-          <Route path="profile" element={<DoctorProfile />} />
-          <Route path="details" element={<DoctorDetail />} />
-          <Route path="update" element={<UpdateDoctorDetails />} />
-        </Route>
+            <Route path="/patient" element={<PatientRoute />}>
+              <Route path="dashboard" element={<PatientDashboard />} />
+              <Route path="bookappointment" element={<BookAppointment />} />
+              <Route path="profile" element={<PatientProfile />} />
+              <Route path="doctors" element={<ViewDoctors />} />
+              <Route path="appointments" element={<ViewAppointments />} />
+              <Route
+                path="doctordetails/:doctorId"
+                element={<DoctorDetailsComponents />}
+              />
+              <Route
+                path="appointmentdetail/:appointmentId"
+                element={<AppointmentDetail />}
+              />
+              <Route path="update-patient" element={<UpdateDetails />} />
+            </Route>
+            <Route path="/doctor" element={<DoctorRoute />}>
+              <Route path="dashboard" element={<DoctorDashboard />} />
+              <Route path="profile" element={<DoctorProfile />} />
+              <Route path="details" element={<DoctorDetail />} />
+              <Route path="update" element={<UpdateDoctorDetails />} />
+            </Route>
 
-        <Route path="/doctors" element={<DoctorDetails />} />
-      </Routes>
-    </BrowserRouter>
+            <Route path="/doctors" element={<DoctorDetails />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeContext.Provider>
+    </ThemeProvider>
   );
 }
 

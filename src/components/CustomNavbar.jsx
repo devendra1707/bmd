@@ -18,8 +18,11 @@ import {
 import { doLogout, getCurrentUserDetail, isLoggedIn } from "../auth";
 import { useNavigate } from "react-router-dom";
 import { Box, CssBaseline } from "@mui/material";
+import Switch from "@mui/material/Switch";
 
-const CustomNavbar = () => {
+const label = { inputProps: { "aria-label": "Switch demo" } };
+
+const CustomNavbar = ({ theme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState(undefined);
@@ -38,7 +41,7 @@ const CustomNavbar = () => {
   };
 
   return (
-    <div>
+    <div id={theme}>
       <CssBaseline />
 
       <Navbar color="dark" dark expand="md" className="px-5 " fixed="top">
@@ -185,6 +188,17 @@ const CustomNavbar = () => {
                 </NavItem>
               </>
             )}
+            <NavItem>
+              <Switch />
+            </NavItem>
+            <NavItem>
+              <span style={{ color: "white" }} className="pr-2">
+                A-
+              </span>
+            </NavItem>
+            <NavItem>
+              <span style={{ color: "white" }}>A+ </span>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

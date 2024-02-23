@@ -68,8 +68,13 @@ const HomeCarousel = ({ slides }) => {
         })}
       </section>
       <container className="text-center">
-         <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-        <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} /> 
+        <div style={{ textAlign: "center" }}>
+          <FaArrowAltCircleLeft
+            className="left-arrow mx-3"
+            onClick={prevSlide}
+          />
+          <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+        </div>
         {/* <MobileStepper
           steps={maxSteps}
           position="static"

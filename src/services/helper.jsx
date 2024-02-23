@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getToken } from "../auth";
 
-// export const BASE_URL = "https://bmdpro.onrender.com/bmd/";
-export const BASE_URL = "http://localhost:8081/bmd/";
+export const BASE_URL = "https://bmdpro.onrender.com/bmd/";
+// export const BASE_URL = "http://localhost:8081/bmd/";
 
 export const myAxios = axios.create({
   baseURL: BASE_URL,
@@ -21,10 +21,10 @@ export const privateAxios = axios.create({
 privateAxios.interceptors.request.use(
   (config) => {
     const token = getToken();
-    console.log(token);
+    // console.log(token);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log(config);
+      // console.log(config);
     }
     return config;
   },
