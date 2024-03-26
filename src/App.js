@@ -84,6 +84,7 @@ function App() {
             </Route>
 
             <Route path="/doctors" element={<DoctorDetails />} />
+            
           </Routes>
         </BrowserRouter>
       </ThemeContext.Provider>
