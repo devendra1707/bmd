@@ -170,7 +170,9 @@ const CustomNavbar = ({ theme }) => {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink onClick={logout}>Logout</NavLink>
+                  <NavLink onClick={logout} style={{ cursor: "pointer" }}>
+                    Logout
+                  </NavLink>
                 </NavItem>
               </>
             )}
