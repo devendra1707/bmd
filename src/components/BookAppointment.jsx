@@ -206,6 +206,10 @@ const BookAppointment = () => {
       value: "Female",
       label: "Female",
     },
+    {
+      value: "Other",
+      label: "Other",
+    },
   ];
   return (
     <Base>
@@ -297,7 +301,7 @@ const BookAppointment = () => {
                 >
                   <MenuItem value="Male">Male</MenuItem>
                   <MenuItem value="Female">Female</MenuItem>
-                  <MenuItem value="Female">Other</MenuItem>
+                  <MenuItem value="Other">Other</MenuItem>
                 </TextField>
                 <TextField
                   onChange={(e) => fieldChange(e, "patientDob")}

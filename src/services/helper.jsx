@@ -7,7 +7,6 @@ export const BASE_URL = "https://bmdpro.onrender.com/bmd/";
 export const myAxios = axios.create({
   baseURL: BASE_URL,
   headers: {
-    Authorization: `Basic ${btoa("test@liferay.com:12345")}`,
     "Content-Type": "application/json",
   },
 });

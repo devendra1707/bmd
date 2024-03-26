@@ -28,7 +28,6 @@ import { createContext, useState } from "react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import AccountHolder from "./pages/account/AccountHolder";
 
 const darkTheme = createTheme({
   palette: {
@@ -58,7 +57,6 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="contactus" element={<Contact />} />
             <Route path="aboutus" element={<AboutUs />} />
-            <Route path="account" element={<AccountHolder />} />
 
             <Route path="/patient" element={<PatientRoute />}>
               <Route path="dashboard" element={<PatientDashboard />} />
