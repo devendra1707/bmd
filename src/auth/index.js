@@ -39,3 +39,12 @@ export const getToken = () => {
     return null;
   }
 };
+
+// export const getToken1 = () => {
+//   const dataCookie = getCookie("data");
+//   if (dataCookie) {
+//     return JSON.parse(dataCookie).token;
+//   } else {
+//     return null;
+//   }
+// };

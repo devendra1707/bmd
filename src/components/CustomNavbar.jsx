@@ -115,6 +115,11 @@ const CustomNavbar = ({ theme }) => {
                 About Us
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink tag={ReactLink} to="/account">
+                Account Details
+              </NavLink>
+            </NavItem>
             {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Services

@@ -17,7 +17,9 @@ const Home = () => {
       });
   }, []);
   return (
+
     <Base>
+    
       <HomeCarousel slides={homeCarouselData} />
     </Base>
   );

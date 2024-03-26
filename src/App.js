@@ -28,6 +28,7 @@ import { createContext, useState } from "react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import AccountHolder from "./pages/account/AccountHolder";
 
 const darkTheme = createTheme({
   palette: {
@@ -37,7 +38,7 @@ const darkTheme = createTheme({
 
 export const ThemeContext = createContext(null);
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
@@ -45,6 +46,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <BrowserRouter basename="/bmd">
           <ToastContainer position="bottom-center" />
@@ -56,6 +58,7 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="contactus" element={<Contact />} />
             <Route path="aboutus" element={<AboutUs />} />
+            <Route path="account" element={<AccountHolder />} />
 
             <Route path="/patient" element={<PatientRoute />}>
               <Route path="dashboard" element={<PatientDashboard />} />

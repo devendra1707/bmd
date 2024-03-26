@@ -1,12 +1,14 @@
 import axios from "axios";
 import { getToken } from "../auth";
 
-export const BASE_URL = "https://bmdpro.onrender.com/bmd/";
-// export const BASE_URL = "http://localhost:8081/bmd/";
+// export const BASE_URL = "https://bmdpro.onrender.com/bmd/";
+export const BASE_URL = "http://localhost:8081/bmd/";
+// export const BASE_URL = "http://localhost:8080/o/c/newaccounts/";
 
 export const myAxios = axios.create({
   baseURL: BASE_URL,
   headers: {
+    Authorization: `Basic ${btoa("test@liferay.com:12345")}`,
     "Content-Type": "application/json",
   },
 });
